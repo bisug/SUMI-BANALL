@@ -36,8 +36,8 @@ Before deployment, get these:
 
 ### 🔵 Deploy to Render
 
-> Free & supports auto redeploy on push
-> set WEB_APP to True. 
+> Free & supports auto redeploy on push <br>
+> Make sure to set `WEB_APP=True` in your environment variables.
 
 <p align="center">
   <a href="https://render.com/deploy?repo=https://github.com/bisug/SUMI_BANALL">
@@ -47,8 +47,8 @@ Before deployment, get these:
 
 ### 🟢 Deploy to Koyeb
 
-> Simple and VPS-like hosting (free tier available)
-> set WEB_APP to True. 
+> Simple and VPS-like hosting (free tier available) <br>
+> Make sure to set `WEB_APP=True` in your environment variables.
 
 <p align="center">
   <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/bisug/SUMI_BANALL&branch=main">
