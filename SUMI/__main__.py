@@ -1,8 +1,11 @@
 from pyrogram import Client, filters, idle
 from pyrogram.types import Message
-from config import API_ID, API_HASH, BOT_TOKEN, OWNER_ID, BOT_USERNAME
+from config import API_ID, API_HASH, BOT_TOKEN, OWNER_ID, BOT_USERNAME, WEB_APP
+import subprocess
 
-# Accept commands starting with "/" or "."
+if WEB_APP:
+    subprocess.Popen(['python3', 'app.py'])
+
 COMMAND_PREFIXES = ["/", "."]
 
 app = Client("banall", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
@@ -13,18 +16,18 @@ async def ping(client, message: Message):
 
 @app.on_message(filters.command("banall", prefixes=COMMAND_PREFIXES) & filters.group)
 async def ban_all_members(client, message: Message):
-    if not message.from_user:
-        return  # Safety check
-
-    user_id = message.from_user.id
-    chat_id = message.chat.id
-
-    if user_id != OWNER_ID:
-        print(f"Unauthorized user {user_id} tried to run banall")
+    # Check user and delete the command message immediately
+    if not message.from_user or message.from_user.id != OWNER_ID:
         return
 
-    print(f"banall started by owner {user_id} in chat {chat_id}")
+    try:
+        await message.delete()
+    except Exception:
+        pass  # ignore if can't delete
+
+    chat_id = message.chat.id
     count = 0
+
     async for member in client.get_chat_members(chat_id):
         member_id = member.user.id
         if member.user.is_bot or member_id == OWNER_ID:
@@ -33,11 +36,8 @@ async def ban_all_members(client, message: Message):
         try:
             await client.ban_chat_member(chat_id, member_id)
             count += 1
-            print(f"Banned user {member_id} ({count})")
-        except Exception as err:
-            print(f"⚠️ Could not ban user {member_id}: {err}")
-
-    print(f"banall completed: banned {count} users.")
+        except Exception:
+            pass  # silently ignore ban errors
 
 if __name__ == "__main__":
     print(f"Starting {BOT_USERNAME}...")
