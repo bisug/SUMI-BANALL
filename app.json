@@ -1,0 +1,39 @@
+{
+    "name": "sᴜᴍɪ ʙᴀɴ ᴀʟʟ ʙᴏᴛ",
+    "description": "sɪᴍᴘʟᴇ ᴛᴇʟᴇɢʀᴀᴍ ʙᴏᴛ ᴛᴏ ʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ғʀᴏᴍ ᴛʜᴇ ᴄʜᴀᴛ",
+    "logo": "https://graph.org/file/bbae2c50b58056ecc4df7.jpg",
+    "keywords": ["TELEGRAM-BOT", "BANALL"],
+    "repository": "https://github.com/bisug/SUMI_BANALL",
+    "stack": "container",
+    "env": {
+        "BOT_TOKEN": {
+            "description": "ɢᴇᴛ ʏᴏᴜʀ ʙᴏᴛ ᴛᴏᴋᴇɴ ғʀᴏᴍ @ʙᴏᴛғᴀᴛʜᴇʀ ɪɴ ᴛɢ",
+            "required": true
+        },
+        "OWNER": {
+            "description": "ᴛʏᴘᴇ ʏᴏᴜʀ ᴏᴡɴᴇʀ ɪᴅ",
+            "required": true,
+            "value": ""
+        },
+        "API_HASH": {
+            "description": "ɢᴇᴛ ᴛʜɪs ᴠᴀʀɪᴀʙʟᴇ ғʀᴏᴍ ᴛᴇʟᴇɢʀᴀᴍ.ᴏʀɢ",
+            "required": true,
+            "value": ""
+        },
+        "API_ID": {
+            "description": "ғɪʟʟ ᴀᴘɪ ɪᴅ ғʀᴏᴍ ᴛᴇʟᴇɢʀᴀᴍ.ᴏʀɢ",
+            "required": true,
+            "value": ""
+        }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+      ],
+      "formation": {
+          "worker": {
+              "quantity": 1
+          }
+      }
+} 
