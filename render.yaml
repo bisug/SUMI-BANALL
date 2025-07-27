@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: dear-bot
+    name: banall
     env: python
     region: oregon
     plan: starter
